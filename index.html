@@ -62,14 +62,34 @@
             overflow-x: hidden;
         }
         
-        /* TahaGasht Styles Override */
+        /* TahaGasht Styles Override & Integration */
         a { text-decoration: none; }
         .text-gold { color: #d4af37 !important; }
         .bg-dark { background-color: #1a1a1a !important; }
-        .footer { background-color: #222; color: #fff; }
-        .footer a { color: #ccc; transition: 0.3s; }
-        .footer a:hover { color: #d4af37; }
+        
+        /* Header Styles Integration */
         .header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 10px 0; position: relative; z-index: 1001; }
+        .header .menu ul li { position: relative; margin: 0 10px; }
+        .header .menu ul li a { color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        .header .menu ul li a:hover { color: #d4af37; }
+        .header .dropdown-menu { text-align: right; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .header .dropdown-item { font-size: 13px; padding: 8px 15px; }
+        .header .left-nav li a { color: #333; font-size: 14px; font-weight: 500; }
+        .header .left-nav li a i { margin-right: 5px; }
+
+        /* Footer Styles Integration */
+        .footer { background-color: #222; color: #fff; font-size: 13px; }
+        .footer a { color: #ccc; transition: 0.3s; text-decoration: none; }
+        .footer a:hover { color: #d4af37; }
+        .footer .footer-text { border-bottom: 1px solid #333; }
+        .footer ul.links li { margin-bottom: 8px; }
+        .footer .socials li { display: inline-block; margin: 0 5px; }
+        .footer .socials li a { font-size: 18px; color: #fff; }
+        .footer .has-bg-image { position: relative; padding: 20px 0; }
+        .footer .bg-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-size: cover; z-index: 0; pointer-events: none; }
+        .footer .row > div { position: relative; z-index: 1; }
+        .footer .certificates img { width: 100%; background: #fff; padding: 5px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .footer .certificates img:hover { transform: scale(1.05); }
         
         /* Custom Scrollbar */
         .hide-scroll::-webkit-scrollbar { display: none; }
@@ -97,27 +117,12 @@
             box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
         }
 
-        /* Timeline Line */
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 24px;
-            width: 2px;
-            background: #e2e8f0;
-            z-index: 0;
-        }
-
         /* Animations */
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
             transform: translateY(20px);
         }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         
         .floating-dock {
@@ -141,38 +146,40 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Map Styles */
-        .world-map path {
-            fill: #1e3a8a;
-            stroke: white;
-            stroke-width: 0.5;
-            transition: all 0.3s ease;
-        }
-        .world-map path:hover {
-            fill: #334155;
-        }
-        .world-map .spain {
-            fill: #d4af37 !important;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
-            animation: pulseMap 2s infinite;
-        }
-        @keyframes pulseMap {
-            0% { fill: #d4af37; }
-            50% { fill: #fcd34d; }
-            100% { fill: #d4af37; }
-        }
+        .world-map path { fill: #1e3a8a; stroke: white; stroke-width: 0.5; transition: all 0.3s ease; }
+        .world-map path:hover { fill: #334155; }
+        .world-map .spain { fill: #d4af37 !important; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6)); animation: pulseMap 2s infinite; }
+        @keyframes pulseMap { 0% { fill: #d4af37; } 50% { fill: #fcd34d; } 100% { fill: #d4af37; } }
 
         /* Quiz Styles */
-        .quiz-option:checked + label {
-            background-color: #d4af37;
-            color: #0f172a;
-            border-color: #d4af37;
-            font-weight: bold;
-        }
+        .quiz-option:checked + label { background-color: #d4af37; color: #0f172a; border-color: #d4af37; font-weight: bold; }
         .quiz-step { display: none; }
         .quiz-step.active { display: block; animation: fadeIn 0.5s; }
 
         /* Sticky Nav Adjustment */
         #lp-navbar { top: 0; }
+
+        /* Responsive Table Styles */
+        @media (max-width: 768px) {
+            .responsive-table thead { display: none; }
+            .responsive-table tr { display: block; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; background: #fff; overflow: hidden; }
+            .responsive-table td { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid #f1f5f9; }
+            .responsive-table td:last-child { border-bottom: none; }
+            .responsive-table td::before { content: attr(data-label); font-weight: bold; color: #64748b; font-size: 0.875rem; }
+        }
+
+        /* Timeline Styles */
+        .timeline-container { position: relative; padding: 20px 0; }
+        .timeline-line { position: absolute; top: 0; bottom: 0; right: 20px; width: 2px; background: #cbd5e1; z-index: 0; }
+        .timeline-item { position: relative; margin-bottom: 40px; padding-right: 60px; opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+        .timeline-marker { position: absolute; right: 6px; top: 0; width: 30px; height: 30px; border-radius: 50%; background: #1e3a8a; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 1; border: 4px solid #f1f5f9; box-shadow: 0 0 0 2px #d4af37; }
+        
+        /* Accordion Styles */
+        details summary::-webkit-details-marker { display: none; }
+        details > summary { list-style: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
     </style>
 
     <!-- Schema -->
@@ -180,38 +187,89 @@
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "آیا با ویزای اسپانیا می‌توانم به فرانسه و ایتالیا هم بروم؟",
-        "acceptedAnswer": { "@type": "Answer", "text": "بله، ویزای شینگن صادر شده توسط اسپانیا برای تمام ۲۷ کشور حوزه شینگن معتبر است." }
-      }]
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "آیا با ویزای اسپانیا می‌توانم به فرانسه و ایتالیا هم بروم؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "بله، ویزای شینگن صادر شده توسط اسپانیا برای تمام ۲۷ کشور حوزه شینگن معتبر است. نکته مهم این است که ورود اول شما باید حتماً به خاک اسپانیا باشد." }
+        },
+        {
+          "@type": "Question",
+          "name": "فرزند بالای ۱۸ سال دارم، آیا می‌تواند با مدارک مالی پدر اقدام کند؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "پیشنهاد اکید ما این است که برای فرزندان بالای ۱۸ سال (حتی دانشجویان)، یک حساب مستقل با تمکن مناسب ارائه شود. این کار استقلال مالی را نشان داده و ریسک پرونده را کاهش می‌دهد." }
+        },
+        {
+          "@type": "Question",
+          "name": "آیا حضور در سفارت برای مصاحبه الزامی است؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "خیر، برای ویزای توریستی معمولاً مصاحبه‌ای انجام نمی‌شود. حضور شما فقط برای تحویل مدارک و ثبت بیومتریک (انگشت‌نگاری) در دفتر کارگزاری BLS الزامی است." }
+        },
+        {
+          "@type": "Question",
+          "name": "اگر قبلاً ریجکتی داشته باشم، طاهاگشت می‌تواند کمک کند؟",
+          "acceptedAnswer": { "@type": "Answer", "text": "بله. تیم ما ابتدا دلیل ریجکتی قبلی (نامه ریجکتی) را آنالیز کرده و پس از رفع نواقص و گذشت زمان مناسب، مجدداً با یک پرونده قوی‌تر اقدام می‌کند." }
+        }
+      ]
     }
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-    <!-- HEADER -->
+    <!-- MAIN SITE HEADER (INTEGRATED) -->
     <header class="header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-1">
                     <a href="https://www.tahagasht.com">
-                        <div class="logo"><img src="https://www.tahagasht.com/uploads/config/tahagasht-vertical.svg" alt="آژانس هواپیمایی طاها گشت" width="90px" height="90px"></div>
+                        <div class="logo">
+                            <img src="https://www.tahagasht.com/uploads/config/tahagasht-vertical.svg" alt="آژانس هواپیمایی طاها گشت" width="90px" height="90px">
+                        </div>
                     </a>
                 </div>
                 <div class="col">
                     <nav class="menu">
                         <ul class="p-0 m-0 list-inline d-flex align-items-center">
-                            <li><a href="#" class="px-2 text-dark">خانه</a></li>
-                            <li><a href="#" class="px-2 text-dark">بلیط هواپیما</a></li>
-                            <li><a href="#" class="px-2 text-dark">هتل</a></li>
-                            <li><a href="#" class="px-2 text-dark">تورهای داخلی</a></li>
+                            <li><a href="https://www.tahagasht.com">خانه</a></li>
+                            <li><a href="https://www.tahagasht.com/flight/plane-ticket">بلیط هواپیما</a></li>
+                            <li><a href="https://www.tahagasht.com/hotel/booking">هتل</a></li>
+                            <li>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">تورهای خارجی</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/tours/europe-tour">تور اروپا</a></li>
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/tours/turkey-tour">تورهای ترکیه</a></li>
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/tours/spain-tour">تور اسپانیا</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="https://www.tahagasht.com/tours/inboard-tours">تورهای داخلی</a></li>
+                            <li>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ویزا</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/visas/spain">ویزای اسپانیا</a></li>
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/visas/france">ویزای فرانسه</a></li>
+                                        <li><a class="dropdown-item" href="https://www.tahagasht.com/visas/canada">ویزای کانادا</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="https://www.tahagasht.com/weblog">وبلاگ</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-4">
                     <ul class="left-nav p-0 m-0 list-inline d-flex align-items-center justify-content-end">
-                        <li><a href="tel:02124825000" class="text-dark text-decoration-none"><span class="my-ltr mx-2">021 24 8 25 000</span><i class="fad fa-phone transition"></i></a></li>
+                        <li>
+                            <a href="tel:02124825000">
+                                <span class="my-ltr">021 24 8 25 000</span>
+                                <i class="fad fa-phone transition"></i>
+                            </a>
+                        </li>
+                        <li class="me-2">
+                            <a href="#newAuthModal" data-bs-toggle="modal">
+                                <span>ورود / ثبت نام</span>
+                                <i class="fad fa-user transition"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -236,11 +294,8 @@
         </div>
     </nav>
 
-    <!-- 1. HERO SECTION (FIXED OVERFLOW) -->
-    <!-- IMPORTANT: Removed 'overflow-hidden' from the main header tag to allow the card to pop out -->
+    <!-- 1. HERO SECTION -->
     <header class="relative h-[85vh] min-h-[600px] flex items-center justify-center bg-brand-dark pb-20">
-        
-        <!-- Background Wrapper (This handles the clipping of the video/image) -->
         <div class="absolute inset-0 z-0 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=2070" alt="Fallback" class="w-full h-full object-cover opacity-50 absolute top-0 left-0">
             <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=2070" class="w-full h-full object-cover opacity-40 relative z-10">
@@ -249,7 +304,6 @@
             <div class="absolute inset-0 bg-black/40 z-20"></div>
         </div>
 
-        <!-- Hero Content -->
         <div class="relative z-30 container mx-auto px-4 text-center fade-in-up max-w-4xl mb-10">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
                 ویزای توریستی اسپانیا با طاهاگشت
@@ -262,16 +316,13 @@
             </a>
         </div>
 
-        <!-- VISA AT A GLANCE CARD (FLOATING & NOT CLIPPED) -->
         <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-50 px-4">
             <div class="container mx-auto max-w-5xl">
                 <div class="bg-white rounded-xl shadow-float border-t-4 border-brand-gold p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right relative">
-                    
                     <div class="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start md:border-l md:border-gray-100 md:pl-6">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Spain Flag" class="w-10 h-7 rounded shadow-sm object-cover">
                         <h2 class="text-xl font-bold text-brand-primary m-0">ویزای اسپانیا</h2>
                     </div>
-
                     <div class="flex flex-wrap justify-center md:justify-between gap-6 flex-1 w-full">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-gray-50 text-brand-gold flex items-center justify-center text-lg shadow-sm"><i class="fa-solid fa-clock"></i></div>
@@ -291,7 +342,7 @@
         </div>
     </header>
 
-    <!-- 2. TRUST STRIP -->
+    <!-- 2. TRUST STRIP & 3. LIVE STATS -->
     <div class="bg-white border-b border-slate-100 pb-8 pt-24 overflow-hidden relative z-20">
         <div class="container mx-auto px-4">
             <div class="flex justify-center md:justify-between items-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -303,8 +354,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 3. LIVE STATS -->
     <section class="py-16 bg-white relative z-10 -mt-4">
         <div class="container mx-auto px-4">
             <div class="bg-brand-dark rounded-3xl p-10 text-white shadow-2xl flex flex-col md:flex-row justify-around items-center text-center gap-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
@@ -317,7 +366,7 @@
         </div>
     </section>
 
-    <!-- Section 2: Why Taha Gasht? -->
+    <!-- Section 2: Why Us & Financials -->
     <section id="why-us" class="py-16 container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white p-8 rounded-2xl shadow-card border-t-4 border-brand-gold hover:-translate-y-2 transition">
@@ -343,7 +392,6 @@
         </div>
     </section>
 
-    <!-- Section 3: Financial Conditions -->
     <section id="financials" class="py-24 bg-brand-primary text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -376,7 +424,7 @@
         </div>
     </section>
 
-    <!-- SMART VISA ASSESSMENT QUIZ -->
+    <!-- QUIZ & VIDEO -->
     <section id="assessment" class="py-24 bg-slate-50 relative">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="text-center mb-10">
@@ -385,6 +433,7 @@
             </div>
             <div class="bg-white rounded-3xl shadow-card overflow-hidden relative border border-slate-200">
                 <div class="h-2 bg-slate-100 w-full"><div id="quiz-progress" class="h-full bg-brand-gold transition-all duration-500 w-0"></div></div>
+                
                 <div id="step-start" class="quiz-step active p-10 text-center">
                     <div class="text-6xl mb-6">🇪🇸</div>
                     <h3 class="text-2xl font-bold text-brand-dark mb-4">آماده سفر به اسپانیا هستید؟</h3>
@@ -434,7 +483,6 @@
         </div>
     </section>
 
-    <!-- 4. VIDEO SECTION -->
     <section id="video-section" class="py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -465,42 +513,234 @@
         </div>
     </section>
 
-    <!-- Section 4: Checklist -->
+    <!-- SECTION 4: SMART CHECKLIST (Segmented Tabs) -->
     <section id="checklist" class="py-24 bg-slate-50">
         <div class="container mx-auto px-4 max-w-5xl">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-4">چک‌لیست مدارک ویزای اسپانیا (تخصصی مشاغل)</h2>
                 <p class="text-slate-500">مدارک مورد نیاز برای هر گروه شغلی متفاوت است. شغل خود را انتخاب کنید تا مدارک دقیق را مشاهده کنید:</p>
             </div>
-            <div class="flex flex-nowrap overflow-x-auto hide-scroll gap-2 mb-0 justify-center pb-4">
-                <button onclick="openTab(event, 'doctors')" class="tab-btn active-tab px-8 py-4 rounded-t-2xl font-bold bg-white text-brand-primary border-b-4 border-brand-gold transition shadow-sm whitespace-nowrap">پزشکان و جراحان</button>
-                <button onclick="openTab(event, 'managers')" class="tab-btn px-8 py-4 rounded-t-2xl font-medium bg-slate-200 text-slate-500 hover:bg-white transition shadow-sm whitespace-nowrap">کارخانه‌داران و مدیران</button>
-                <!-- Other buttons same as before -->
+            
+            <!-- Tabs Header (Scrollable on Mobile) -->
+            <div class="flex flex-nowrap overflow-x-auto hide-scroll gap-2 mb-0 justify-start md:justify-center pb-4 px-2">
+                <button onclick="openTab(event, 'doctors')" class="tab-btn active-tab px-6 py-3 md:px-8 md:py-4 rounded-t-2xl font-bold bg-white text-brand-primary border-b-4 border-brand-gold transition shadow-sm whitespace-nowrap flex-shrink-0">پزشکان و جراحان</button>
+                <button onclick="openTab(event, 'managers')" class="tab-btn px-6 py-3 md:px-8 md:py-4 rounded-t-2xl font-medium bg-slate-200 text-slate-500 hover:bg-white transition shadow-sm whitespace-nowrap flex-shrink-0">کارخانه‌داران و مدیران</button>
+                <button onclick="openTab(event, 'builders')" class="tab-btn px-6 py-3 md:px-8 md:py-4 rounded-t-2xl font-medium bg-slate-200 text-slate-500 hover:bg-white transition shadow-sm whitespace-nowrap flex-shrink-0">سازندگان و مالکان</button>
+                <button onclick="openTab(event, 'lawyers')" class="tab-btn px-6 py-3 md:px-8 md:py-4 rounded-t-2xl font-medium bg-slate-200 text-slate-500 hover:bg-white transition shadow-sm whitespace-nowrap flex-shrink-0">وکلا</button>
+                <button onclick="openTab(event, 'employees')" class="tab-btn px-6 py-3 md:px-8 md:py-4 rounded-t-2xl font-medium bg-slate-200 text-slate-500 hover:bg-white transition shadow-sm whitespace-nowrap flex-shrink-0">کارمندان</button>
             </div>
-            <div class="bg-white p-12 rounded-b-3xl rounded-tr-3xl shadow-card border border-slate-100">
-                <div id="doctors" class="tab-content block">
+
+            <!-- Tab Contents -->
+            <div class="bg-white p-8 md:p-12 rounded-b-3xl rounded-tr-3xl shadow-card border border-slate-100 min-h-[300px]">
+                
+                <!-- 1. Doctors -->
+                <div id="doctors" class="tab-content block fade-in-up">
                     <h3 class="text-2xl font-bold text-brand-primary mb-6 border-r-4 border-brand-gold pr-4">پزشکان و جراحان</h3>
                     <ul class="grid md:grid-cols-2 gap-4 text-slate-700">
                         <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>پروانه مطب معتبر</li>
-                        <!-- ... items ... -->
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>کارت نظام پزشکی</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>لیست بیمه پرسنل (اثبات کارفرما بودن)</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>پروانه بهره‌برداری (برای کلینیک‌ها)</li>
                     </ul>
                 </div>
-                <div id="managers" class="tab-content hidden">
-                    <!-- ... content ... -->
+
+                <!-- 2. Managers -->
+                <div id="managers" class="tab-content hidden fade-in-up">
+                    <h3 class="text-2xl font-bold text-brand-primary mb-6 border-r-4 border-brand-gold pr-4">کارخانه‌داران و مدیران</h3>
+                    <ul class="grid md:grid-cols-2 gap-4 text-slate-700">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>روزنامه رسمی (آگهی تأسیس و تغییرات)</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>لیست بیمه کارکنان</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>کارت بازرگانی معتبر</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>برگه‌های پرداخت مالیات</li>
+                    </ul>
                 </div>
-                <!-- ... other tabs ... -->
+
+                <!-- 3. Builders -->
+                <div id="builders" class="tab-content hidden fade-in-up">
+                    <h3 class="text-2xl font-bold text-brand-primary mb-6 border-r-4 border-brand-gold pr-4">سازندگان و مالکان</h3>
+                    <ul class="grid md:grid-cols-2 gap-4 text-slate-700">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>اصل سند مالکیت</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>پروانه ساختمان</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>پایان کار</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>اجاره‌نامه‌های معتبر با کد رهگیری</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Lawyers -->
+                <div id="lawyers" class="tab-content hidden fade-in-up">
+                    <h3 class="text-2xl font-bold text-brand-primary mb-6 border-r-4 border-brand-gold pr-4">وکلا</h3>
+                    <ul class="grid md:grid-cols-2 gap-4 text-slate-700">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>پروانه وکالت کانون وکلا (پایه یک دادگستری)</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>دفترچه وکالت با تمبر مالیاتی</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>گردش حساب بانکی وکالتی</li>
+                    </ul>
+                </div>
+
+                <!-- 5. Employees -->
+                <div id="employees" class="tab-content hidden fade-in-up">
+                    <h3 class="text-2xl font-bold text-brand-primary mb-6 border-r-4 border-brand-gold pr-4">کارمندان (دولت/خصوصی)</h3>
+                    <ul class="grid md:grid-cols-2 gap-4 text-slate-700">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>گواهی اشتغال به کار (سمت، حقوق، مرخصی)</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>۳ فیش حقوقی آخر</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>سابقه بیمه تأمین اجتماعی</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-brand-gold rounded-full ml-3"></span>حکم کارگزینی (برای دولتی‌ها)</li>
+                    </ul>
+                </div>
+
+                <!-- Download Box -->
                 <div class="mt-10 pt-6 border-t border-slate-100 flex justify-end">
-                    <button class="flex items-center bg-red-50 text-red-600 hover:bg-red-100 px-6 py-3 rounded-lg font-bold transition">
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        دانلود فایل PDF چک‌لیست کامل مدارک با سربرگ رسمی طاهاگشت
+                    <button class="w-full md:w-auto flex items-center justify-center bg-red-50 text-red-600 hover:bg-red-600 hover:text-white px-6 py-4 rounded-xl font-bold transition group border border-red-100">
+                        <i class="fa-solid fa-file-pdf text-xl ml-3 transition-transform group-hover:scale-110"></i>
+                        <span>دانلود فایل PDF چک‌لیست کامل مدارک با سربرگ رسمی طاهاگشت</span>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 5: Pricing & Timeline & FAQ & Form (Same structure, hidden for brevity in preview, present in file) -->
-    <section id="pricing" class="py-24 bg-brand-light"><div class="container mx-auto px-4 max-w-4xl"><h2 class="text-3xl font-bold text-center text-brand-primary mb-12">هزینه ویزای توریستی اسپانیا</h2><div class="hidden md:block bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100"><table class="w-full text-right"><thead class="bg-brand-primary text-white"><tr><th class="p-5 font-medium">خدمات</th><th class="p-5 font-medium">هزینه (یورو - نقدی)</th><th class="p-5 font-medium">توضیحات</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><td class="p-5 font-bold text-slate-700">ورودی سفارت (بزرگسال)</td><td class="p-5 font-bold text-brand-primary text-lg">۹۰ €</td><td class="p-5 text-sm text-slate-500">پرداخت مستقیم در دفتر BLS</td></tr></tbody></table></div></div></section>
+    <!-- SECTION 5: PRICING TABLE -->
+    <section id="pricing" class="py-24 bg-brand-light">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center text-brand-primary mb-12">هزینه ویزای توریستی اسپانیا</h2>
+            
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100">
+                <table class="w-full text-right responsive-table">
+                    <thead class="bg-brand-primary text-white">
+                        <tr>
+                            <th class="p-5 font-medium">خدمات</th>
+                            <th class="p-5 font-medium">هزینه (یورو - نقدی)</th>
+                            <th class="p-5 font-medium">توضیحات</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold border-b border-slate-50" data-label="خدمات">ورودی سفارت (بزرگسال)</td>
+                            <td class="p-5 font-bold text-brand-primary text-lg border-b border-slate-50" data-label="هزینه">۹۰ €</td>
+                            <td class="p-5 text-sm text-slate-500 border-b border-slate-50" data-label="توضیحات">پرداخت مستقیم در دفتر BLS</td>
+                        </tr>
+                        <tr class="bg-slate-50/50 hover:bg-slate-100 transition">
+                            <td class="p-5 font-bold border-b border-slate-50" data-label="خدمات">ورودی سفارت (کودک ۶-۱۲ سال)</td>
+                            <td class="p-5 font-bold text-brand-primary text-lg border-b border-slate-50" data-label="هزینه">۴۵ €</td>
+                            <td class="p-5 text-sm text-slate-500 border-b border-slate-50" data-label="توضیحات">پرداخت مستقیم در دفتر BLS</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-5 font-bold border-b border-slate-50" data-label="خدمات">کارمزد خدمات BLS</td>
+                            <td class="p-5 font-bold text-brand-primary text-lg border-b border-slate-50" data-label="هزینه">~ ۲۰ €</td>
+                            <td class="p-5 text-sm text-slate-500 border-b border-slate-50" data-label="توضیحات">هزینه انگشت‌نگاری و سرویس</td>
+                        </tr>
+                        <tr class="bg-brand-gold/5 hover:bg-brand-gold/10 transition border-l-4 border-brand-gold">
+                            <td class="p-5 font-bold border-b border-slate-50 text-brand-dark" data-label="خدمات">خدمات VIP طاهاگشت</td>
+                            <td class="p-5 font-bold text-brand-dark text-lg border-b border-slate-50" data-label="هزینه">تماس بگیرید</td>
+                            <td class="p-5 text-sm text-slate-600 border-b border-slate-50" data-label="توضیحات">شامل بررسی مدارک، وقت فوری، رزرو تور</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: TIMELINE -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-primary mb-16">مراحل دریافت ویزای اسپانیا با طاهاگشت</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">تماس و مشاوره اولیه</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">بررسی شانس ویزا توسط کارشناس و عقد قرارداد.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">تکمیل پرونده</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">ترجمه مدارک و تنظیم برنامه سفر (Itinerary) دقیق توسط تیم فنی.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">روز سفارت (BLS)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">همراهی نماینده طاهاگشت با شما در روز انگشت‌نگاری و تحویل مدارک.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">بررسی پرونده</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">۱۴ تا ۲۱ روز کاری (زمان انتظار برای پاسخ سفارت).</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker bg-brand-gold border-white">5</div>
+                    <h3 class="text-xl font-bold text-brand-gold mb-2">پیکاپ ویزا</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">تحویل پاسپورت و ویزا درب منزل یا محل کار شما (سرویس VIP).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: FAQ (Accordion) -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-brand-primary mb-4">سوالات متداول شما</h2>
+                <p class="text-slate-500">پاسخ به پرسش‌های پرتکرار مسافران</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <summary class="flex justify-between items-center p-6 font-bold text-brand-dark hover:bg-slate-50 transition">
+                        <span>آیا با ویزای اسپانیا می‌توانم به فرانسه و ایتالیا هم بروم؟</span>
+                        <span class="text-brand-gold text-xl transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-loose border-t border-slate-50">
+                        بله، ویزای شینگن صادر شده توسط اسپانیا برای تمام ۲۷ کشور حوزه شینگن معتبر است. نکته مهم این است که "ورود اول" شما باید حتماً به خاک اسپانیا باشد.
+                    </div>
+                </details>
+
+                <!-- Q2 -->
+                <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <summary class="flex justify-between items-center p-6 font-bold text-brand-dark hover:bg-slate-50 transition">
+                        <span>فرزند بالای ۱۸ سال دارم، آیا می‌تواند با مدارک مالی پدر اقدام کند؟</span>
+                        <span class="text-brand-gold text-xl transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-loose border-t border-slate-50">
+                        پیشنهاد اکید ما این است که برای فرزندان بالای ۱۸ سال (حتی دانشجویان)، یک حساب مستقل با تمکن مناسب ارائه شود. این کار استقلال مالی را نشان داده و ریسک پرونده را کاهش می‌دهد.
+                    </div>
+                </details>
+
+                <!-- Q3 -->
+                <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <summary class="flex justify-between items-center p-6 font-bold text-brand-dark hover:bg-slate-50 transition">
+                        <span>آیا حضور در سفارت برای مصاحبه الزامی است؟</span>
+                        <span class="text-brand-gold text-xl transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-loose border-t border-slate-50">
+                        خیر، برای ویزای توریستی معمولاً مصاحبه‌ای انجام نمی‌شود. حضور شما فقط برای تحویل مدارک و ثبت بیومتریک (انگشت‌نگاری) در دفتر کارگزاری BLS الزامی است.
+                    </div>
+                </details>
+
+                <!-- Q4 -->
+                <details class="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer">
+                    <summary class="flex justify-between items-center p-6 font-bold text-brand-dark hover:bg-slate-50 transition">
+                        <span>اگر قبلاً ریجکتی داشته باشم، طاهاگشت می‌تواند کمک کند؟</span>
+                        <span class="text-brand-gold text-xl transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-slate-600 leading-loose border-t border-slate-50">
+                        بله. تیم ما ابتدا دلیل ریجکتی قبلی (نامه ریجکتی) را آنالیز کرده و پس از رفع نواقص و گذشت زمان مناسب، مجدداً با یک پرونده قوی‌تر (شامل دعوت‌نامه یا برنامه سفر دقیق‌تر) اقدام می‌کند.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <section id="consultation" class="py-24 bg-white text-center"><div class="container mx-auto px-4 max-w-3xl"><h2 class="text-3xl font-bold text-brand-primary mb-8">درخواست مشاوره فوری</h2><div class="bg-slate-50 p-6 rounded-3xl shadow-inner border border-slate-100 min-h-[200px] flex items-center justify-center"><div class="elfsight-app-da69cfb4-7276-418a-95f9-73f81ef20840 w-full"></div></div></div></section>
 
     <!-- LUXURY FLOATING DOCK -->
@@ -537,25 +777,143 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- MAIN SITE FOOTER (INTEGRATED) -->
     <footer class="footer mt-4">
         <div class="container pb-4">
             <div class="row mb-3">
-                <div class="col-12"><div class="footer-text py-5"><p dir="RTL">شما می توانید در سامانه رزرواسیون آنلاین <strong><a href="#">آژانس هواپیمایی طاهاگشت</a></strong> نسبت به رزرو بلیط هواپیما اقدام نمایید.</p></div></div>
+                <div class="col-12">
+                    <div class="footer-text py-5">
+                        <p dir="RTL">شما می توانید در سامانه رزرواسیون آنلاین <strong><a href="https://www.tahagasht.com/">آژانس هواپیمایی طاهاگشت</a></strong> نسبت به رزرو بلیط هواپیما، <a href="https://www.tahagasht.com/flight"><strong>بلیط هواپیما خارجی</strong></a>&nbsp;و&nbsp;<strong>داخلی،</strong>&nbsp;<strong><a href="https://www.tahagasht.com/hotel">رزرو آنلاین هتل</a></strong> در ایران و سراسر جهان و همچنین <strong><a href="https://www.tahagasht.com/tours/inboard-tours">رزرو آنلاین تورهای داخلی</a></strong> اقدام نمایید.</p>
+                        <p dir="RTL">جهت شروع فرایند خرید <strong><a href="https://www.tahagasht.com/flight">بلیط هواپیما</a>، هتل و تور&nbsp;</strong>می توانید در صفحات مرتبط در قسمت سرچ باکس، شهر مبدا و مقصد خود<span dir="RTL"> و تاریخ رفت (و در صورت نیاز برگشت) </span> را انتخاب نمایید و سپس با کلیک بر روی دکمه <strong>جستجو</strong>&nbsp;جزئیات اطلاعات و قیمت ها را مشاهده و اقدام به رزرو نمایید .</p>                </div>
+                    </div>
+                </div>
             </div>
-            <!-- Simplified Footer Columns for Preview -->
             <div class="row mb-3">
-                <div class="col-lg-3 col-md-6 mb-3"><b class="d-block mb-3">طاهاگشت</b><ul class="links list-inline p-0 m-0"><li class="mb-3"><b class="text-gold">تلفن : </b><a href="tel:02124825000" class="text-white my-ltr">021 24 8 25 000</a></li></ul></div>
-                <div class="col-lg-3 col-md-6 mb-3"><b class="d-block mb-3">نمادها</b><div class="row symbols"><div class="col-4 mb-3"><img src="https://www.tahagasht.com/assets/images/footer/enamad.webp" alt="Enamad" class="img-fluid bg-white rounded p-1"></div></div></div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">تور داخلی</b>
+                    <ul class="links">
+                        <li><a href="https://www.tahagasht.com/tours/kish-tour">تور کیش</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/mashhad-tour">تور مشهد</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/qeshm-tour">تور قشم</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/shiraz-tour">تور شیراز</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/isfahan-tour">تور اصفهان</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/yazd-tour">تور یزد</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">تور خارجی</b>
+                    <ul class="links">
+                        <li><a href="https://www.tahagasht.com/tours/europe-tour" target="_blank" rel="noreferrer">تور اروپا</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/dubai-tour">تور دبی</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/thailand-tour">تور تایلند</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/turkey-tour">تور ترکیه</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/maldives-tour">تور مالدیو</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">بلیط هواپیما داخلی</b>
+                    <ul class="links">
+                        <li><a href="https://www.tahagasht.com/flight/kish-airplane-ticket">بلیط هواپیما کیش</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/mashhad-airplane-ticket">بلیط هواپیما مشهد</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/tehran-airplane-ticket">بلیط هواپیما تهران</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/shiraz-airplane-ticket">بلیط هواپیما شیراز</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">بلیط هواپیما خارجی</b>
+                    <ul class="links">
+                        <li><a href="https://www.tahagasht.com/flight/istanbul-airplane-ticket">بلیط هواپیما استانبول</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/dubai-airplane-ticket">بلیط هواپیما دبی</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/paris-airplane-ticket">بلیط هواپیما پاریس</a></li>
+                        <li><a href="https://www.tahagasht.com/flight/toronto-airplane-ticket">بلیط هواپیما تورنتو</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">رزرو هتل</b>
+                    <ul class="links">
+                        <li><a href="https://www.tahagasht.com/hotel/mashhad">رزرو هتل مشهد</a></li>
+                        <li><a href="https://www.tahagasht.com/hotel/kish">رزرو هتل کیش</a></li>
+                        <li><a href="https://www.tahagasht.com/hotel/istanbul">رزرو هتل استانبول</a></li>
+                        <li><a href="https://www.tahagasht.com/hotel/dubai">رزرو هتل دبی</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row has-bg-image">
+                <div class="bg-image" style="background-image: url('https://www.tahagasht.com/assets/images/footer_bg.png')"></div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">طاهاگشت</b>
+                    <ul class="links list-inline p-0 m-0">
+                        <li class="mb-3">
+                            <i class="fad fa-location-dot fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">آدرس : </b>
+                            <span>تهران - خیابان پاسداران - نبش نگارستان ششم - ساختمان طاها گشت</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fad fa-phone-volume fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">تلفن : </b>
+                            <a href="tel:021 24 8 25 000" class="text-white my-ltr">021 24 8 25 000</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fad fa-envelope fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">ایمیل : </b>
+                            <a href="mailto:info@tahagasht.com" class="text-white my-ltr">info@tahagasht.com</a>
+                        </li>
+                    </ul>
+                    <ul class="socials list-inline p-0 m-0 mt-3">
+                        <li><a href="https://www.instagram.com/tahagasht/"><i class="fab fa-instagram-square"></i></a></li>
+                        <li><a href="https://telegram.me/tahagashttravel/"><i class="fa fa-paper-plane"></i></a></li>
+                        <li><a href="https://twitter.com/tahagasht"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">اطلاعات مفید</b>
+                    <ul class="links list-inline p-0 m-0">
+                        <li class="mb-3"><a href="https://www.ikac.ir/flight-status" target="_blank">اطلاعات پرواز فرودگاه امام خمینی</a></li>
+                        <li class="mb-3"><a href="http://www.accuweather.com/fa/ir/tehran/210841/weather-forecast/210841" target="_blank">آب و هوای کشورها</a></li>
+                        <li class="mb-3"><a href="https://www.bahesab.ir/time/conversion/" target="_blank">تبدیل تاریخ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">دسترسی سریع</b>
+                    <ul class="links list-inline p-0 m-0">
+                        <li class="mb-3"><a href="https://www.tahagasht.com/page/rules">قوانین و مقررات</a></li>
+                        <li class="mb-3"><a href="https://tollpayment.sadadpsp.ir/merchants/tax/index.html#/tax/departuretax" target="_blank">پرداخت عوارض خروج از کشور</a></li>
+                        <li class="mb-3"><a href="https://www.tahagasht.com/contact">ارتباط با ما</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">نمادها</b>
+                    <div class="row symbols">
+                        <div class="col-4 mb-3 certificates">
+                            <button aria-label="E-namad">
+                                <img src="https://www.tahagasht.com/assets/images/footer/enamad.webp" onclick="window.open('https://trustseal.enamad.ir/?id=20389&Code=ACG0by7LWUZrELQc3c1m', 'Popup', 'toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" id="ACG0by7LWUZrELQc3c1m" alt="E-namad">
+                            </button>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <a href="http://aira.ir/" target="_blank"><img src="https://www.tahagasht.com/uploads/blocks_certificates/anjoman.jpg" alt="anjoman" class="w-100 rounded"></a>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <a href="https://www.iata.org/" target="_blank"><img src="https://www.tahagasht.com/uploads/blocks_certificates/iata_1__75b3a712e0667459825eb8efb71277e2.jpg" alt="iata" class="w-100 rounded"></a>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <a href="https://caa.gov.ir/" target="_blank"><img src="https://www.tahagasht.com/uploads/blocks_certificates/cao.png" alt="cao" class="w-100 rounded"></a>
+                        </div>
+                        <div class="col-4 mb-3">
+                            <a href="https://farasa.cao.ir/" target="_blank"><img src="https://www.tahagasht.com/uploads/blocks_certificates/hoghoogh_1__e49e2b4dbcc13506ffa008be7271ce92.jpg" alt="hoghoogh" class="w-100 rounded"></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="bg-dark p-4 text-center">1404 © تمامی حقوق مادی و معنوی این وب سایت متعلق به طاهاگشت می باشد.</div>
+        <div class="bg-dark p-4 text-center text-white">
+            1404 © تمامی حقوق مادی و معنوی این وب سایت متعلق به طاهاگشت می باشد.
+        </div>
     </footer>
 
     <!-- JS Logic -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Logic scripts (Quiz, Tabs, Popup) as previously defined
+        // 1. Quiz Logic
         let quizScore = 0;
         function nextStep(nextId, scoreToAdd) {
             quizScore += scoreToAdd;
@@ -608,18 +966,32 @@
                 }
             }, 1000);
         }
+
+        // 2. Tabs Logic
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.add("hidden"); tabcontent[i].classList.remove("block"); }
             tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active-tab bg-white text-brand-primary border-b-4 border-brand-gold", " bg-slate-200 text-slate-500"); }
-            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.remove("hidden");
+            document.getElementById(tabName).classList.add("block");
             evt.currentTarget.className += " active-tab bg-white text-brand-primary border-b-4 border-brand-gold";
         }
-        document.addEventListener("DOMContentLoaded", function() {
-            if(document.getElementsByClassName("tab-btn").length > 0) document.getElementsByClassName("tab-btn")[0].click();
-        });
+        
+        // 3. Timeline Animation Logic
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.timeline-item').forEach(item => { observer.observe(item); });
+
+        // 4. Popup Logic
         const popup = document.getElementById('exitPopup');
         let popupShown = false;
         document.addEventListener('mouseleave', e => {
@@ -629,6 +1001,11 @@
             }
         });
         function closePopup() { popup.classList.remove('active'); }
+        
+        // Init Tabs
+        document.addEventListener("DOMContentLoaded", function() {
+            if(document.getElementsByClassName("tab-btn").length > 0) document.getElementsByClassName("tab-btn")[0].click();
+        });
     </script>
 </body>
 </html>
