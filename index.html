@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 1. SEO & Metadata (Exact Match) -->
+    <!-- 1. SEO & Metadata -->
     <title>ویزای توریستی اسپانیا (VIP) | اخذ فوری و تضمینی با طاهاگشت</title>
     <meta name="description" content="با ۳۰ سال سابقه طاهاگشت، ویزای شینگن اسپانیا را بدون ریسک دریافت کنید. خدمات وقت سفارت فوری (Premium)، چک‌لیست دقیق مدارک ۱۴۰۴ و تورهای لوکس. [مشاوره رایگان]">
     <link rel="canonical" href="https://tahagasht.com/spain-tourist-visa-vip" />
 
-    <!-- Tailwind CSS -->
+    <!-- 2. Libraries for Site Header/Footer (Bootstrap + FontAwesome) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- 3. Tailwind CSS (For Landing Page Content) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font: Vazirmatn -->
@@ -21,6 +25,9 @@
     <!-- Config -->
     <script>
         tailwind.config = {
+            // Important: Prefix Tailwind classes to avoid conflict with Bootstrap
+            // But for this preview, we keep it simple. 
+            // Note: Bootstrap uses specific classes, Tailwind is utility-first.
             theme: {
                 extend: {
                     colors: {
@@ -54,7 +61,17 @@
         body {
             font-family: 'Vazirmatn', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
+        
+        /* TahaGasht Header/Footer Custom Styles Override (To match site look) */
+        a { text-decoration: none; }
+        .text-gold { color: #d4af37 !important; }
+        .bg-dark { background-color: #1a1a1a !important; }
+        .footer { background-color: #222; color: #fff; }
+        .footer a { color: #ccc; transition: 0.3s; }
+        .footer a:hover { color: #d4af37; }
+        .header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 10px 0; position: relative; z-index: 1001; }
         
         /* Custom Scrollbar */
         .hide-scroll::-webkit-scrollbar { display: none; }
@@ -117,13 +134,34 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.85);
-            z-index: 1000;
+            z-index: 9999; /* Higher than header */
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
         }
         .exit-popup.active { display: flex; animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Map Styles */
+        .world-map path {
+            fill: #1e3a8a;
+            stroke: white;
+            stroke-width: 0.5;
+            transition: all 0.3s ease;
+        }
+        .world-map path:hover {
+            fill: #334155;
+        }
+        .world-map .spain {
+            fill: #d4af37 !important;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+            animation: pulseMap 2s infinite;
+        }
+        @keyframes pulseMap {
+            0% { fill: #d4af37; }
+            50% { fill: #fcd34d; }
+            100% { fill: #d4af37; }
+        }
 
         /* Quiz Styles */
         .quiz-option:checked + label {
@@ -134,6 +172,11 @@
         }
         .quiz-step { display: none; }
         .quiz-step.active { display: block; animation: fadeIn 0.5s; }
+
+        /* Sticky Nav Adjustment for Main Header */
+        #lp-navbar {
+            top: 0; /* Will stick to top */
+        }
     </style>
 
     <!-- Schema (Exact Match) -->
@@ -173,23 +216,86 @@
     }
     </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-32 pt-16">
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-    <!-- NAV (Sticky) -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-nav border-b border-white/20">
+    <!-- =========================
+         TAHAGASHT SITE HEADER
+    ========================== -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-1">
+                    <a href="https://www.tahagasht.com">
+                        <div class="logo">
+                            <img src="https://www.tahagasht.com/uploads/config/tahagasht-vertical.svg" alt="آژانس هواپیمایی طاها گشت" width="90px" height="90px">
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <nav class="menu">
+                        <ul class="p-0 m-0 list-inline d-flex align-items-center">
+                            <li><a href="https://www.tahagasht.com" class="px-2 text-dark">خانه</a></li>
+                            <li><a href="https://www.tahagasht.com/flight/plane-ticket" class="px-2 text-dark">بلیط هواپیما</a></li>
+                            <li><a href="https://www.tahagasht.com/hotel/booking" class="px-2 text-dark">هتل</a></li>
+                            <!-- Simplified Dropdowns for preview -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle px-2 text-dark" href="#" role="button" data-bs-toggle="dropdown">تورهای خارجی</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">تور اروپا</a></li>
+                                    <li><a class="dropdown-item" href="#">تور ترکیه</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="https://www.tahagasht.com/tours/inboard-tours" class="px-2 text-dark">تورهای داخلی</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle px-2 text-dark" href="#" role="button" data-bs-toggle="dropdown">ویزا</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">ویزای شینگن</a></li>
+                                    <li><a class="dropdown-item" href="#">ویزای کانادا</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="https://www.tahagasht.com/weblog" class="px-2 text-dark">وبلاگ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-4">
+                    <ul class="left-nav p-0 m-0 list-inline d-flex align-items-center justify-content-end">
+                        <li>
+                            <a href="tel:021 24 8 25 000" class="text-dark text-decoration-none">
+                                <span class="my-ltr mx-2">021 24 8 25 000</span>
+                                <i class="fad fa-phone transition"></i>
+                            </a>
+                        </li>
+                        <li class="me-2">
+                            <a href="#newAuthModal" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal">
+                                <span>ورود / ثبت نام</span>
+                                <i class="fad fa-user transition ms-1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================
+         LANDING PAGE CONTENT
+    ========================== -->
+    
+    <!-- LANDING NAV (Sticky Sub-menu) -->
+    <nav id="lp-navbar" class="sticky top-0 left-0 w-full z-40 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-nav border-b border-white/20">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16 overflow-x-auto nav-scroll">
                 <div class="flex items-center space-x-reverse space-x-2 md:space-x-6 min-w-max mx-auto md:mx-0">
-                    <a href="#why-us" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">چرا طاهاگشت؟</a>
-                    <a href="#financials" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">شرایط مالی</a>
-                    <a href="#assessment" class="text-sm font-medium text-brand-gold font-bold bg-brand-dark/5 px-4 py-2 rounded-full transition whitespace-nowrap">سنجش شانس ویزا</a>
-                    <a href="#checklist" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">چک‌لیست مدارک</a>
-                    <a href="#pricing" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">هزینه ویزا</a>
-                    <a href="#timeline" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">مراحل دریافت</a>
-                    <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap">سوالات متداول</a>
+                    <a href="#why-us" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">چرا طاهاگشت؟</a>
+                    <a href="#financials" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">شرایط مالی</a>
+                    <a href="#assessment" class="text-sm font-medium text-brand-gold font-bold bg-brand-dark/5 px-4 py-2 rounded-full transition whitespace-nowrap text-decoration-none">سنجش شانس ویزا</a>
+                    <a href="#checklist" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">چک‌لیست مدارک</a>
+                    <a href="#pricing" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">هزینه ویزا</a>
+                    <a href="#timeline" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">مراحل دریافت</a>
+                    <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-brand-primary px-4 py-2 transition whitespace-nowrap text-decoration-none">سوالات متداول</a>
                 </div>
                 <div class="hidden md:block mr-auto">
-                    <a href="#consultation" class="bg-brand-primary text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-brand-dark transition">رزرو مشاوره</a>
+                    <a href="#consultation" class="bg-brand-primary text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-brand-dark transition text-decoration-none">رزرو مشاوره</a>
                 </div>
             </div>
         </div>
@@ -209,19 +315,18 @@
         <!-- Hero Content -->
         <div class="relative z-30 container mx-auto px-4 text-center fade-in-up max-w-4xl mb-10">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-                اخذ ویزای توریستی اسپانیا؛ <br>
-                <span class="text-gradient-gold mt-2 block">تجربه سفر بدون دغدغه با استانداردهای طاهاگشت</span>
+                ویزای توریستی اسپانیا با طاهاگشت
             </h1>
             <p class="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
-                اسپانیا مقصد رویاهاست، اما مسیر رسیدن به آن نباید کابوس باشد. در حالی که دیگران نگران وقت سفارت و پیچیدگی‌های فرم‌ها هستند، مسافران طاهاگشت چمدان خود را برای اقامت در هتل‌های ۵ ستاره مادرید می‌بندند. ما با ۳ دهه تجربه در برگزاری تورهای لوکس اروپا، پیچیده‌ترین پرونده‌های ویزا را به نتیجه می‌رسانیم.
+                سریع، آسان و بی‌دغدغه، ویزای اسپانیا توریستی را اخذ کنید.
             </p>
-            <a href="#consultation" class="btn-gold text-brand-primary font-bold py-4 px-12 rounded-full text-lg shadow-glow inline-block min-w-[250px]">
+            <a href="#consultation" class="btn-gold text-brand-primary font-bold py-4 px-12 rounded-full text-lg shadow-glow inline-block min-w-[250px] text-decoration-none">
                 دریافت مشاوره اختصاصی ویزا
             </a>
         </div>
 
-        <!-- VISA AT A GLANCE CARD (Updated Icons) -->
-        <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-40 px-4">
+        <!-- VISA AT A GLANCE CARD -->
+        <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-30 px-4">
             <div class="container mx-auto max-w-5xl">
                 <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border-t-4 border-brand-gold p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-right relative overflow-hidden">
                     
@@ -232,7 +337,7 @@
                     <div class="flex items-center gap-4 border-b md:border-b-0 md:border-l border-slate-200 pb-6 md:pb-0 md:pl-8 w-full md:w-auto justify-center md:justify-start shrink-0">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Spain Flag" class="w-16 h-auto rounded-lg shadow-md object-cover ring-2 ring-slate-100">
                         <div>
-                            <h2 class="text-2xl font-extrabold text-brand-primary tracking-tight">ویزای اسپانیا</h2>
+                            <h2 class="text-2xl font-extrabold text-brand-primary tracking-tight m-0">ویزای اسپانیا</h2>
                             <span class="inline-block mt-1 text-xs font-bold text-brand-gold bg-brand-gold/10 px-2 py-1 rounded-md">شینگن توریستی</span>
                         </div>
                     </div>
@@ -275,7 +380,7 @@
         </div>
     </header>
 
-    <!-- 2. TRUST STRIP (Updated Logos from Clearbit) -->
+    <!-- 2. TRUST STRIP -->
     <div class="bg-white border-b border-slate-100 pb-8 pt-24 overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="flex justify-center md:justify-between items-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -310,7 +415,7 @@
         </div>
     </section>
 
-    <!-- Section 2: Why Taha Gasht? (Exact Text) -->
+    <!-- Section 2: Why Taha Gasht? -->
     <section id="why-us" class="py-16 container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white p-8 rounded-2xl shadow-card border-t-4 border-brand-gold hover:-translate-y-2 transition">
@@ -321,17 +426,17 @@
             <div class="bg-white p-8 rounded-2xl shadow-card border-t-4 border-brand-primary hover:-translate-y-2 transition">
                 <div class="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-3xl mb-6 border border-slate-100">⚖️</div>
                 <h3 class="text-xl font-bold text-brand-primary mb-3">آنالیز حقوقی مدارک</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">یک اشتباه کوچک در مدارک مالی یعنی ریجکتی. تیم کارشناسان ارشد ما، مدارک شغلی و بانکی شما را قبل از ارسال، با دقت وکیل حقوقی بررسی می‌کنند.</p>
+                <p class="text-slate-500 text-sm leading-relaxed">یک اشتباه کوچک در مدارک مالی، یعنی ریجکتی ویزا اسپانیا! تیم کارشناسان حقوقی ما، مدارک شغلی و بانکی شما را قبل از ارسال، با دقت بررسی می‌کنند.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-card border-t-4 border-brand-gold hover:-translate-y-2 transition">
                 <div class="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-3xl mb-6 border border-slate-100">🏆</div>
-                <h3 class="text-xl font-bold text-brand-primary mb-3">اعتبار برند ۳۰ ساله</h3>
+                <h3 class="text-xl font-bold text-brand-primary mb-3">بیش از ۳۰ سال تجربه</h3>
                 <p class="text-slate-500 text-sm leading-relaxed">سفارت‌خانه‌ها طاهاگشت را می‌شناسند. اقدام از طریق تورهای گروهی ما، به پرونده شما اعتبار مضاعف می‌بخشد و شانس ویزا را بالا می‌برد.</p>
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-card border-t-4 border-brand-primary hover:-translate-y-2 transition">
                 <div class="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-3xl mb-6 border border-slate-100">✈️</div>
                 <h3 class="text-xl font-bold text-brand-primary mb-3">پکیج کامل سفر</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">ویزا فقط شروع کار است. پروازهای قطری/امارات و بهترین هتل‌های اروپا بخش جدانشدنی خدمات ماست تا سفری بی‌نقص داشته باشید.</p>
+                <p class="text-slate-500 text-sm leading-relaxed">ویزا فقط شروع کار است. در صورت تمایل می‌توانید در تورهای گروهی اسپانیا طاهاگشت شرکت کنید. تورهایی با پرواز امارات، اقامت در هتل‌های 5 ستاره و همراهی تور لیدر فارسی زبان از مبدا. یک سفر بی‌نقص در انتظار شماست.</p>
             </div>
         </div>
     </section>
@@ -342,7 +447,7 @@
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">شرایط تمکن مالی و گردش حساب <span class="text-brand-goldLight text-2xl block mt-2">(استاندارد ۱۴۰۴)</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">شرایط تمکن مالی و گردش حساب <span class="text-brand-goldLight text-2xl block mt-2">(آخرین به‌روزرسانی سفارت)</span></h2>
                     <p class="text-slate-200 text-lg mb-8 leading-relaxed">برای سفارت اسپانیا، منبع پول مهم‌تر از مقدار پول است. کارشناسان ما به شما کمک می‌کنند تا حساب بانکی خود را دقیقاً مطابق با سلیقه افسر ویزا تنظیم کنید.</p>
                     <ul class="space-y-4">
                         <li class="flex items-center p-4 bg-white/5 rounded-xl border border-white/10">
@@ -369,7 +474,7 @@
         </div>
     </section>
 
-    <!-- NEW: SMART VISA ASSESSMENT QUIZ -->
+    <!-- SMART VISA ASSESSMENT QUIZ -->
     <section id="assessment" class="py-24 bg-slate-50 relative">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="text-center mb-10">
@@ -446,40 +551,34 @@
         </div>
     </section>
 
-    <!-- 4. VIDEO SECTION (Replaces Map) -->
+    <!-- 4. VIDEO SECTION -->
     <section id="video-section" class="py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-4">
-            <!-- Title -->
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-brand-primary mb-4">سفر به قلب اروپا</h2>
                 <p class="text-slate-500">گوشه‌ای از زیبایی‌های اسپانیا را تماشا کنید</p>
             </div>
 
-            <!-- Video Card Container -->
             <div class="bg-brand-dark rounded-3xl overflow-hidden shadow-2xl relative max-w-6xl mx-auto">
-                <!-- Dark Overlay for Text Contrast -->
                 <div class="absolute inset-0 z-0">
                     <div class="absolute inset-0 bg-gradient-to-l from-brand-dark via-brand-dark/90 to-transparent opacity-90 md:opacity-100"></div>
                 </div>
                 
                 <div class="grid md:grid-cols-2 items-stretch relative z-10">
-                    <!-- Video Side -->
                     <div class="relative h-[400px] md:h-[500px] w-full order-2 md:order-1">
                          <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
                             <source src="https://www.tahagasht.com/uploads/blocks_intro/spain%20video.mp4" type="video/mp4">
                          </video>
-                         <!-- Gradient Overlay for Seamless Blend on Mobile -->
                          <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent md:hidden"></div>
                     </div>
 
-                    <!-- Text Side -->
                     <div class="p-8 md:p-12 text-white flex flex-col justify-center order-1 md:order-2 text-right">
                         <div class="w-16 h-1 bg-brand-gold mb-8 rounded-full"></div>
                         <h3 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">رویای اسپانیا، <br>نزدیک‌تر از همیشه</h3>
                         <p class="text-slate-300 text-lg leading-relaxed mb-10">
                             قدم زدن در خیابان‌های سنگ‌فرش بارسلون، تماشای غروب در سواحل مالاگا، و معماری حیرت‌انگیز مادرید. ما در طاهاگشت نه فقط ویزا، بلکه تجربه سفری بی‌نقص و لوکس را برای شما می‌سازیم.
                         </p>
-                        <a href="#consultation" class="inline-flex items-center gap-3 text-brand-gold font-bold text-lg hover:text-white transition group w-max">
+                        <a href="#consultation" class="inline-flex items-center gap-3 text-brand-gold font-bold text-lg hover:text-white transition group w-max text-decoration-none">
                             <span>شروع پروسه اخذ ویزا</span>
                             <span class="group-hover:-translate-x-2 transition transform duration-300">←</span>
                         </a>
@@ -735,7 +834,95 @@
         </div>
     </div>
 
+    <!-- =========================
+         TAHAGASHT SITE FOOTER
+    ========================== -->
+    <footer class="footer mt-4">
+        <div class="container pb-4">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="footer-text py-5">
+                        <p dir="RTL">شما می توانید در سامانه رزرواسیون آنلاین <strong><a href="https://www.tahagasht.com/">آژانس هواپیمایی طاهاگشت</a></strong> نسبت به رزرو بلیط هواپیما، <a href="https://www.tahagasht.com/flight"><strong>بلیط هواپیما خارجی</strong></a>&nbsp;و&nbsp;<strong>داخلی،</strong>&nbsp;<strong><a href="https://www.tahagasht.com/hotel">رزرو آنلاین هتل</a></strong> در ایران و سراسر جهان و همچنین <strong><a href="https://www.tahagasht.com/tours/inboard-tours">رزرو آنلاین تورهای داخلی</a></strong> اقدام نمایید.</p>
+                        <p dir="RTL">جهت شروع فرایند خرید <strong><a href="https://www.tahagasht.com/flight">بلیط هواپیما</a>، هتل و تور&nbsp;</strong>می توانید در صفحات مرتبط در قسمت سرچ باکس، شهر مبدا و مقصد خود<span dir="RTL"> و تاریخ رفت (و در صورت نیاز برگشت) </span> را انتخاب نمایید و سپس با کلیک بر روی دکمه <strong>جستجو</strong>&nbsp;جزئیات اطلاعات و قیمت ها را مشاهده و اقدام به رزرو نمایید .</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">تور داخلی</b>
+                    <ul class="links p-0 m-0 list-unstyled">
+                        <li><a href="https://www.tahagasht.com/tours/kish-tour">تور کیش</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/mashhad-tour">تور مشهد</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/qeshm-tour">تور قشم</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/shiraz-tour">تور شیراز</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/isfahan-tour">تور اصفهان</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/yazd-tour">تور یزد</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/tabriz-tour">تور تبریز</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">تور خارجی</b>
+                    <ul class="links p-0 m-0 list-unstyled">
+                        <li><a href="https://www.tahagasht.com/tours/europe-tour">تور اروپا</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/dubai-tour">تور دبی</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/turkey-tour">تور ترکیه</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/thailand-tour">تور تایلند</a></li>
+                        <li><a href="https://www.tahagasht.com/tours/maldives-tour">تور مالدیو</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <b class="d-block mb-3">بلیط هواپیما</b>
+                    <ul class="links p-0 m-0 list-unstyled">
+                        <li><a href="#">بلیط هواپیما تهران</a></li>
+                        <li><a href="#">بلیط هواپیما مشهد</a></li>
+                        <li><a href="#">بلیط هواپیما کیش</a></li>
+                        <li><a href="#">بلیط هواپیما استانبول</a></li>
+                        <li><a href="#">بلیط هواپیما دبی</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">طاهاگشت</b>
+                    <ul class="links list-inline p-0 m-0">
+                        <li class="mb-3">
+                            <i class="fas fa-location-dot fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">آدرس : </b>
+                            <span>تهران - خیابان پاسداران - نبش نگارستان ششم - ساختمان طاها گشت</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone-volume fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">تلفن : </b>
+                            <a href="tel:021 24 8 25 000" class="text-white my-ltr">021 24 8 25 000</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-envelope fa-lg text-gold ms-1"></i>
+                            <b class="text-gold">ایمیل : </b>
+                            <a href="mailto:info@tahagasht.com" class="text-white my-ltr">info@tahagasht.com</a>
+                        </li>
+                    </ul>
+                    <ul class="socials list-inline p-0 m-0 mt-3">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-telegram fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-2x"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <b class="d-block mb-3">نمادها</b>
+                    <div class="row symbols">
+                        <div class="col-4 mb-3"><img src="https://www.tahagasht.com/assets/images/footer/enamad.webp" alt="Enamad" class="img-fluid bg-white rounded p-1"></div>
+                        <div class="col-4 mb-3"><img src="https://www.tahagasht.com/uploads/blocks_certificates/anjoman.jpg" alt="Anjoman" class="img-fluid bg-white rounded p-1"></div>
+                        <div class="col-4 mb-3"><img src="https://www.tahagasht.com/uploads/blocks_certificates/iata_1__75b3a712e0667459825eb8efb71277e2.jpg" alt="IATA" class="img-fluid bg-white rounded p-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark p-4 text-center">
+            1404 © تمامی حقوق مادی و معنوی این وب سایت متعلق به طاهاگشت می باشد.
+        </div>
+    </footer>
+
     <!-- JS Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Quiz Logic
         let quizScore = 0;
